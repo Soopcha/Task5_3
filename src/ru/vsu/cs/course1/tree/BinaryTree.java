@@ -12,10 +12,11 @@ import java.util.Stack;
  *
  * @param <T>
  */
-public interface BinaryTree<T> extends Iterable<T> {
+public interface BinaryTree<T> extends Iterable<T> { // наследует интерфейс Итерейбел те может быть итерируемой
+    // (те можно пройти по всем узлам подерева)
 
     /**
-     * Интерфейс для описания узла двоичного дерева
+     * Интерфейс для описания узла двоичного(бинарного) дерева
      *
      * @param <T>
      */
@@ -30,7 +31,7 @@ public interface BinaryTree<T> extends Iterable<T> {
          * @return Левое поддерево
          */
         default TreeNode<T> getLeft() {
-            return null;
+            return null; //Null по умолчанию
         }
 
         /**
@@ -70,7 +71,7 @@ public interface BinaryTree<T> extends Iterable<T> {
     /**
      * @return Корень (вершина) дерева
      */
-    TreeNode<T> getRoot();
+    TreeNode<T> getRoot(); // метод возвращает вершину дерева (родительский узел)
 
 
     /**
@@ -85,7 +86,7 @@ public interface BinaryTree<T> extends Iterable<T> {
 
 
     /**
-     * Представление дерева в виде строки в скобочной нотации
+     * реализация Представление дерева в виде строки в скобочной нотации
      *
      * @return дерево в виде строки
      */
