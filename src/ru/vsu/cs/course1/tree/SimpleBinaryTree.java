@@ -3,7 +3,7 @@ package ru.vsu.cs.course1.tree;
 import java.util.function.Function;
 
 /**
- * Реализация простейшего бинарного дерева
+ * Реализация простейшего бинарного дерева (самое первое)
  */
 public class SimpleBinaryTree<T> implements BinaryTree<T> {
 
@@ -22,6 +22,7 @@ public class SimpleBinaryTree<T> implements BinaryTree<T> {
             this(value, null, null);
         }
 
+        //переопределение методов, которые мы и хотели переопределить
         @Override
         public T getValue() {
             return value;
@@ -43,17 +44,27 @@ public class SimpleBinaryTree<T> implements BinaryTree<T> {
     protected Function<String, T> fromStrFunc;
     protected Function<T, String> toStrFunc;
 
+    //разные конструкторы реализованы:
     public SimpleBinaryTree(Function<String, T> fromStrFunc, Function<T, String> toStrFunc) {
         this.fromStrFunc = fromStrFunc;
         this.toStrFunc = toStrFunc;
-    }
+    }/* принимает два аргумента: функцию fromStrFunc и функцию toStrFunc. (но реально это объекы, реализующие нужный нам метод
+    функциональный интерфейс это, с одним методом)
+Функция fromStrFunc принимает на вход строковое значение и возвращает объект типа T.
+Эта функция используется для преобразования строковых значений в объекты типа T.
+Функция toStrFunc принимает на вход объект типа T и возвращает его строковое представление.
+Эта функция используется для преобразования объектов типа T в строковое представление.
+Конструктор сохраняет эти две функции в полях класса, чтобы они могли быть использованы в дальнейшем при
+работе с объектами типа T. Конструктор может быть использован для создания экземпляра класса SimpleBinaryTree с
+заданными функциями преобразования значений.
+    */
 
     public SimpleBinaryTree(Function<String, T> fromStrFunc) {
         this(fromStrFunc, Object::toString);
     }
 
     public SimpleBinaryTree() {
-        this(null);
+        this(null); //прочитать дерево из скобочного представления мы не сможем, конструировать нужно руками
     }
 
     @Override
@@ -116,6 +127,7 @@ public class SimpleBinaryTree<T> implements BinaryTree<T> {
     }
 
     private SimpleTreeNode fromBracketStr(String bracketStr, IndexWrapper iw) throws Exception {
+        //чтение скобочного представления
         T parentValue = readValue(bracketStr, iw);
         SimpleTreeNode parentNode = new SimpleTreeNode(parentValue);
         if (bracketStr.charAt(iw.index) == '(') {
